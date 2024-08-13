@@ -25,6 +25,8 @@ app.add_middleware(
 )
 pickle_in = open("Credit.pickle4","rb")
 classifier=pickle.load(pickle_in)
+def transf():
+    return classifier
 
 # 3. Index route, opens automatically on http://127.0.0.1:8000
 @app.get('/')
@@ -56,3 +58,5 @@ def predict(data: BankCredit):
     return {
         'prediction': prediction
     }
+if __name__ == '__main__':
+    uvicorn.run(app, port=8080, host='0.0.0.0')
